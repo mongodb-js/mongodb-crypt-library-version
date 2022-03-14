@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "pretest": "npm run build",
-    "test": "./test.sh",
+    "test": "sh ./test.sh",
     "install": "node-gyp rebuild",
     "prepack": "npm run build",
     "build": "gen-esm-wrapper . ./.esm-wrapper.mjs"

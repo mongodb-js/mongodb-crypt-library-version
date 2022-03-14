@@ -67,7 +67,7 @@ Value GetCSFLESharedLibraryVersion(const CallbackInfo& args) {
 #ifdef _WIN32
   HMODULE lib = LoadLibraryW(MultiByteToWideChar(filename).data());
   if (!lib) {
-    throw ThrowWindowsError(env, "LoadLibraryW");
+    ThrowWindowsError(env, "LoadLibraryW");
   }
   Cleanup cleanup([&]() { FreeLibrary(lib); });
   auto load = [&](const char* name) -> FARPROC {
