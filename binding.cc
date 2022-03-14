@@ -1,8 +1,10 @@
 #include <napi.h>
 #ifdef _WIN32
 #include <windows.h>
+#define MONGO_API_CALL __cdecl
 #else
 #include <dlfcn.h>
+#define MONGO_API_CALL
 #endif
 
 using namespace Napi;
@@ -98,8 +100,8 @@ Value GetCSFLESharedLibraryVersion(const CallbackInfo& args) {
       throw Error::New(env, "Path is not a MongoDB CSFLE shared library");
     }
   } else {
-    version = reinterpret_cast<uint64_t(*)()>(get_version)();
-    version_str = reinterpret_cast<const char*(*)()>(get_version_str)();
+    version = reinterpret_cast<uint64_t(MONGO_API_CALL*)()>(get_version)();
+    version_str = reinterpret_cast<const char*(MONGO_API_CALL*)()>(get_version_str)();
   }
 
   Object result = Object::New(env);
