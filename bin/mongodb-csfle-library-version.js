@@ -8,7 +8,7 @@ if (!process.argv[2]) {
     const { version, versionStr } = getCSFLESharedLibraryVersion(process.argv[2]);
     console.log(`${versionStr} (0x${version.toString(16).padStart(16, '0')})`);
   } catch (err) {
-    console.error(error.message);
+    console.error(err.message);
     process.exitCode = 1;
   }
 }
