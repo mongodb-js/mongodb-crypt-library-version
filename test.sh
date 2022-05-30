@@ -45,7 +45,7 @@ if [ `node -p process.platform` = "win32" ]; then
   mkdir -p tmp && cd tmp && \
     curl -O "https://mciuploads.s3.amazonaws.com/mongodb-mongo-master/mongo_csfle/enterprise-windows-required/237b218974e4fc09104c81fe0bb1ba83688d8035/mongo_csfle_v1-6.0.0-alpha-529-g237b218.zip" && \
     unzip mongo_csfle_v1-6.0.0-alpha-529-g237b218.zip && \
-    ../bin/mongodb-crypt-library-version.js lib/mongo_csfle_v1.dll > version && \
+    ../bin/mongodb-crypt-library-version.js bin/mongo_csfle_v1.dll > version && \
     cat version && \
     grep -Fq 'mongo_csfle_v1-dev-6.0.0-alpha-529-g237b218 (0x0000000006000000)' version && \
   cd .. && rm -rf tmp || FAILED=1
@@ -53,7 +53,7 @@ if [ `node -p process.platform` = "win32" ]; then
   mkdir -p tmp && cd tmp && \
     curl -O "https://downloads.mongodb.com/windows/mongo_csfle_v1-windows-x86_64-enterprise-5.3.0-rc3.zip" && \
     unzip mongo_csfle_v1-windows-x86_64-enterprise-5.3.0-rc3.zip && \
-    ../bin/mongodb-crypt-library-version.js lib/mongo_csfle_v1.dll > version && \
+    ../bin/mongodb-crypt-library-version.js bin/mongo_csfle_v1.dll > version && \
     cat version && \
     grep -Fq 'mongo_crypt_v1-unknown (0x0000000000000000)' version && \
   cd .. && rm -rf tmp || FAILED=1
