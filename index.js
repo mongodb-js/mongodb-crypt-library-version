@@ -1,3 +1,3 @@
-const { getCSFLESharedLibraryVersion } = require('bindings')('mongodb_csfle_library_version');
+const { getMongoCryptSharedLibraryVersion } = require('bindings')('mongodb_crypt_library_version');
 
-module.exports = getCSFLESharedLibraryVersion;
+module.exports = getMongoCryptSharedLibraryVersion;

@@ -18,6 +18,17 @@ struct Cleanup {
   ~Cleanup() { fn(); }
 };
 
+// pick the first truthy argument
+template <typename T>
+T&& pick(T&& arg) {
+  return std::forward<T>(arg);
+}
+
+template <typename T, typename... U>
+T&& pick(T&& arg, U&&... args) {
+  return arg ? std::forward<T>(arg) : std::forward<T>(pick(args...));
+}
+
 #ifdef _WIN32
 // Convert UTF-8 to a Windows UTF-16 WCHAR array.
 std::vector<WCHAR> MultiByteToWideChar(const std::string& in) {
@@ -62,7 +73,7 @@ void ThrowWindowsError(Env env, const char* call) {
 }
 #endif
 
-Value GetCSFLESharedLibraryVersion(const CallbackInfo& args) {
+Value GetMongoCryptSharedLibraryVersion(const CallbackInfo& args) {
   Env env = args.Env();
   const std::string filename = args[0].ToString();
 
@@ -86,18 +97,18 @@ Value GetCSFLESharedLibraryVersion(const CallbackInfo& args) {
   };
 #endif
 
-  auto get_version = load("mongo_csfle_v1_get_version");
-  auto get_version_str = load("mongo_csfle_v1_get_version_str");
-  auto aq = load("mongo_csfle_v1_analyze_query");
+  auto get_version = pick(load("mongo_crypt_v1_get_version"), load("mongo_csfle_v1_get_version"));
+  auto get_version_str = pick(load("mongo_crypt_v1_get_version_str"), load("mongo_csfle_v1_get_version_str"));
+  auto aq = pick(load("mongo_crypt_v1_analyze_query"), load("mongo_csfle_v1_analyze_query"));
 
   uint64_t version;
   std::string version_str;
   if (!get_version || !get_version_str) {
     if (aq) {
       version = 0;
-      version_str = "mongo_csfle_v1-unknown";
+      version_str = "mongo_crypt_v1-unknown";
     } else {
-      throw Error::New(env, "Path is not a MongoDB CSFLE shared library");
+      throw Error::New(env, "Path is not a MongoDB Crypt shared library");
     }
   } else {
     version = reinterpret_cast<uint64_t(MONGO_API_CALL*)()>(get_version)();
@@ -112,9 +123,9 @@ Value GetCSFLESharedLibraryVersion(const CallbackInfo& args) {
 
 }
 
-static Object InitGetCSFLESharedLibraryVersion(Env env, Object exports) {
-  exports["getCSFLESharedLibraryVersion"] = Function::New(env, GetCSFLESharedLibraryVersion);
+static Object InitGetMongoCryptSharedLibraryVersion(Env env, Object exports) {
+  exports["getMongoCryptSharedLibraryVersion"] = Function::New(env, GetMongoCryptSharedLibraryVersion);
   return exports;
 }
 
-NODE_API_MODULE(mongodb_csfle_library_version, InitGetCSFLESharedLibraryVersion)
+NODE_API_MODULE(mongodb_crypt_library_version, InitGetMongoCryptSharedLibraryVersion)

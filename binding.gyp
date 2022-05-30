@@ -1,6 +1,6 @@
 {
   'targets': [{
-    'target_name': 'mongodb_csfle_library_version',
+    'target_name': 'mongodb_crypt_library_version',
     'sources': [ 'binding.cc' ],
     'include_dirs': ["<!(node -p \"require('node-addon-api').include_dir\")"],
     'dependencies': ["<!(node -p \"require('node-addon-api').gyp\")"],
