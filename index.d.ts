@@ -1,2 +1,2 @@
-declare function getCSFLESharedLibraryVersion(path: string): { version: bigint; versionStr: string };
-export = getCSFLESharedLibraryVersion;
+declare function getMongoCryptSharedLibraryVersion(path: string): { version: bigint; versionStr: string };
+export = getMongoCryptSharedLibraryVersion;

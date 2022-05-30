@@ -1,7 +1,7 @@
 {
-  "name": "mongodb-csfle-library-version",
+  "name": "mongodb-crypt-library-version",
   "version": "1.0.2",
-  "description": "Get the version of a MongoDB CSFLE shared library programmatically and as a CLI",
+  "description": "Get the version of a MongoDB Crypt shared library programmatically and as a CLI",
   "main": "index.js",
   "scripts": {
     "pretest": "npm run build",
@@ -21,24 +21,24 @@
     "require": "./index.js",
     "import": "./.esm-wrapper.mjs"
   },
-  "homepage": "https://github.com/mongodb-js/mongodb-csfle-library-version",
+  "homepage": "https://github.com/mongodb-js/mongodb-crypt-library-version",
   "repository": {
     "type": "git",
-    "url": "https://github.com/mongodb-js/mongodb-csfle-library-version.git"
+    "url": "https://github.com/mongodb-js/mongodb-crypt-library-version.git"
   },
-  "bugs": "https://github.com/mongodb-js/mongodb-csfle-library-version/issues",
+  "bugs": "https://github.com/mongodb-js/mongodb-crypt-library-version/issues",
   "typings": "index.d.ts",
   "files": [
     "binding.cc",
     "binding.gyp",
     "index.d.ts",
     "index.js",
-    "bin/mongodb-csfle-library-version.js",
+    "bin/mongodb-crypt-library-version.js",
     "LICENSE",
     ".esm-wrapper.mjs"
   ],
   "bin": {
-    "mongodb-csfle-library-version": "bin/mongodb-csfle-library-version.js"
+    "mongodb-crypt-library-version": "bin/mongodb-crypt-library-version.js"
   },
   "devDependencies": {
     "gen-esm-wrapper": "^1.1.1"
