@@ -1,6 +1,6 @@
 {
   "name": "mongodb-crypt-library-version",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Get the version of a MongoDB Crypt shared library programmatically and as a CLI",
   "main": "index.js",
   "scripts": {
