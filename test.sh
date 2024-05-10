@@ -34,11 +34,11 @@ if [ `node -p process.platform` = "darwin" ]; then
   cd .. && rm -rf tmp || FAILED=1
 
   mkdir -p tmp && cd tmp && \
-    curl -O "https://downloads.mongodb.com/osx/mongo_csfle_v1-macos-$ARCH-enterprise-5.3.0-rc3.tgz" && \
-    tar xvzf mongo_csfle_v1-macos-$ARCH-enterprise-5.3.0-rc3.tgz && \
-    ../bin/mongodb-crypt-library-version.js lib/mongo_csfle_v1.dylib > version && \
+    curl -O "https://downloads.mongodb.com/osx/mongo_crypt_shared_v1-macos-$ARCH-enterprise-8.0.0-rc4.tgz" && \
+    tar xvzf mongo_crypt_shared_v1-macos-$ARCH-enterprise-8.0.0-rc4.tgz && \
+    ../bin/mongodb-crypt-library-version.js lib/mongo_crypt_v1.dylib > version && \
     cat version && \
-    grep -Fq 'mongo_crypt_v1-unknown (0x0000000000000000)' version && \
+    grep -Fq 'mongo_crypt_v1-dev-8.0.0-rc4 (0x0008000000000000)' version && \
   cd .. && rm -rf tmp || FAILED=1
 fi
 
